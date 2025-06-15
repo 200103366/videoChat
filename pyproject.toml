@@ -13,6 +13,7 @@ channels-redis = "^3.3.0"
 redis = "^3.5.3"
 psycopg2-binary = "^2.9.1"
 django-sslserver = "^0.22"
+gunicorn = "^21.2.0"
 
 [tool.poetry.dev-dependencies]
 
