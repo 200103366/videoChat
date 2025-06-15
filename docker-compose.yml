@@ -5,22 +5,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: python manage.py runsslserver 0.0.0.0:443 --certificate /etc/ssl/certs/certificate.crt --key /etc/ssl/private/private.key
-    volumes:
-      - ./ca_bundle.crt:/etc/ssl/certs/ca_bundle.crt
-      - ./certificate.crt:/etc/ssl/certs/certificate.crt
-      - ./private.key:/etc/ssl/private/private.key
+    command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
-      - "443:443"
     environment:
-      - REDIS_HOST=redis
+      - REDIS_URL=redis://redis:6379/0
     depends_on:
       - redis
-    # command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
   redis:
-    image: redis
+    image: redis:latest
     ports:
       - "6379:6379"
 
